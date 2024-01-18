@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "gsap": "^3.12.2",
+    "mysql": "^2.18.1",
+    "three": "^0.155.0"
+  }
+}

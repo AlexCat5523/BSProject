@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 )
 
+// для функций панорамы
 let pano = 'p1'
 const canvas = document.getElementById(".webgl")
 const renderer = new THREE.WebGLRenderer({ canvas })
@@ -138,8 +139,8 @@ function setarrows(current) {
 			elem.style.visibility = 'visible'
 
 			document.getElementById('arrowsdiv').appendChild(elem)
-
 		}
+	// setsigns(result['signs'])
 	};
 }
 
@@ -148,6 +149,22 @@ function rotatearrows(event) {	// расчитываем поворот стре
 	for(let i in arrows) {
 		let rotangle = (controls.getAzimuthalAngle()  - prevAzimAngle) * (180 / Math.PI)	// пересчитываем радианы в градусы
 		arrows[i].style.rotate = `${(parseFloat(arrows[i].style.rotate.slice(0, -3)) + rotangle)}deg`
+		// console.log(controls.getAzimuthalAngle())
+	}
+}
+
+function setsigns(data) {
+	for(let i in data) {
+		let splitted = data[i].split(';')
+		console.log(splitted)
+		let elem = document.createElement('img')
+		elem.setAttribute('class', 'info')
+		elem.setAttribute('id', splitted[0])
+		elem.setAttribute('src', 'static/img/info.png')
+		elem.style.left = String(splitted[3]).trim() + 'px'
+		elem.style.top = String(splitted[4]).trim() + 'px'
+		elem.style.position = 'absolute'
+		document.body.appendChild(elem)
 	}
 }
 
@@ -160,28 +177,49 @@ document.body.onmousedown = function() {
 }
 
 function getoverelement(event) {	// получаем элемент над которым находится мышка 
+	// console.log(event.target.id)
 	return event.target
 }
 
 function zooming(event) {
-	if(event.deltaY < 0) {
-		if(camera.zoom + 1 < 5) {
-			camera.zoom += 0.2
-			camera.updateProjectionMatrix()
+	if(getoverelement(event).id != 'map') {
+		if(event.deltaY < 0) {
+			if(camera.zoom + 1 < 5) {
+				camera.zoom += 0.2
+				camera.updateProjectionMatrix()
+			}
 		}
-	}
-	else {
-		if(camera.zoom - 1 > 0) {
-			camera.zoom -= 0.2
-			camera.updateProjectionMatrix()
+		else {
+			if(camera.zoom - 1 > 0) {
+				camera.zoom -= 0.2
+				camera.updateProjectionMatrix()
+			}
 		}
+		prevAzimAngle = 0
+	} else {
+		resize_map(event)
 	}
 }
 
+
+function resize_map(event) {
+	let map = document.getElementById('map')
+	let mapcanv = document.getElementById('mapcanv')
+	console.log(mapcanv.offsetWidth)
+	map.style.width = String(map.offsetWidth) + 'px'
+	if(event.deltaY < 0) {
+		let w = parseInt(map.style.width.slice(0, -2))
+		// if((w - 10) < mapcanv.offsetWidth) {
+			map.style.width = String(w - 25) + 'px'
+		// }
+	}
+}
+
+// addEventListener('mousemove', function(event) { console.log(event.clientX, event.clientY) })
 addEventListener('mouseover', getoverelement)
 addEventListener('mouseup', rotatearrows)
 addEventListener('wheel', zooming)
 
-document.getElementById('cBut').addEventListener('click', Cgoto)
+// document.getElementById('cBut').addEventListener('click', Cgoto)
 init()
 animate()

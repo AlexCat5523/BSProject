@@ -3,7 +3,7 @@ from functions import *
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'kusya_durnusya'
+app.config['SECRET_KEY'] = 'okok'
 
 
 @app.route('/test', methods={'GET', 'POST'})

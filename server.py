@@ -14,7 +14,7 @@ def main():
 
         return {'info': arrows[0], 'arroworder': arrows[1]}
 
-    return render_template('/templates/web.html')
+    return render_template('web.html')
 
 
 if __name__=='__main__':

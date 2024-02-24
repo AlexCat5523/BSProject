@@ -8,7 +8,7 @@ var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHe
 let pano = 'p1'
 const canvas = document.getElementById(".webgl")
 const renderer = new THREE.WebGLRenderer({ canvas })
-var texture = new THREE.TextureLoader().load(`./static/img/${pano}/${pano}.jpg`)
+var texture = new THREE.TextureLoader().load(`./static/media/${pano}/${pano}.jpg`)
 var material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide, wireframe: false, map: texture} )
 const geometry2 = new THREE.SphereGeometry(15, 64)
 
@@ -54,7 +54,7 @@ function Cgoto(event) {	// переход для консоли
 	controls.reset()
 	setarrows(tile)
 	scene.remove(sphere)
-	texture = new THREE.TextureLoader().load(`./static/img/${tile}/${tile}.jpg`)
+	texture = new THREE.TextureLoader().load(`./static/media/${tile}/${tile}.jpg`)
 	texture.encoding = THREE.sRGBEncoding
 	material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide, wireframe: false, map: texture} )
 	sphere = new THREE.Mesh( geometry2, material )
@@ -64,7 +64,7 @@ function Cgoto(event) {	// переход для консоли
 function goto(tile) {
 	console.log(tile)
 	scene.remove(sphere)
-	texture = new THREE.TextureLoader().load(`./static/img/${tile}/${tile}.jpg`)
+	texture = new THREE.TextureLoader().load(`./static/media/${tile}/${tile}.jpg`)
 	texture.encoding = THREE.sRGBEncoding
 	material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide, wireframe: false, map: texture} )
 	sphere = new THREE.Mesh( geometry2, material )
@@ -75,7 +75,7 @@ function goto(tile) {
 function setarrows(current) {
 	let xhr = new XMLHttpRequest();
 
-	xhr.open('POST', 'https://bsproject.onrender.com/');
+	xhr.open('POST', 'https://bsproject.onrender.com');
 
 	// 3. Отсылаем запрос
 	xhr.send(current);
@@ -132,7 +132,7 @@ function setarrows(current) {
 
 			elem.setAttribute('id', `arrow_${res[i]}`)
 			elem.setAttribute('class', 'arrow')
-			elem.setAttribute('src', 'static/img/arrow.png')
+			elem.setAttribute('src', 'static/media/arrow.png')
 			elem.onclick = function() { goto(res[i]) }
 			
 			elem.style.rotate = `${90 * dir_values[dir] + controls.getAzimuthalAngle() * (180 / Math.PI)}deg`	// устанавливаем поворот стрелки
@@ -160,7 +160,7 @@ function setsigns(data) {
 		let elem = document.createElement('img')
 		elem.setAttribute('class', 'info')
 		elem.setAttribute('id', splitted[0])
-		elem.setAttribute('src', 'static/img/info.png')
+		elem.setAttribute('src', 'static/media/info.png')
 		elem.style.left = String(splitted[3]).trim() + 'px'
 		elem.style.top = String(splitted[4]).trim() + 'px'
 		elem.style.position = 'absolute'

@@ -6,20 +6,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'okok'
 
 
-@app.route('/test', methods={'GET', 'POST'})
-def index():
-    user = 'Саша'
-    title = 'Сайтик'
-    message = ''
-
-    if request.method == "POST":
-        if "action1" in request.form:
-            message = "Ура"
-            
-    return render_template('index.html', username=user, title=title, message=message)
-
-
-
 @app.route('/', methods=['GET', 'POST'])
 def test():
     if request.method == 'POST':

@@ -17,5 +17,5 @@ def main():
     return render_template('web.html')
 
 
-if __name__=='__main__':
-    app.run(port=None, host='https://bsproject.onrender.com/templates/web.html')
+# if __name__=='__main__':
+#     app.run(host='https://bsproject.onrender.com')

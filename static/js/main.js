@@ -75,7 +75,7 @@ function goto(tile) {
 function setarrows(current) {
 	let xhr = new XMLHttpRequest();
 
-	xhr.open('POST', 'https://bsproject.onrender.com/templates/web.html');
+	xhr.open('POST', 'https://bsproject.onrender.com');
 
 	// 3. Отсылаем запрос
 	xhr.send(current);

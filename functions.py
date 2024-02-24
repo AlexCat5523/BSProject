@@ -1,4 +1,4 @@
-def genarrows(reqdata):     # возвращается варианты переходов из панорамы в порядке sort_order
+def genarrows(reqdata):     # возвращаются варианты переходов из панорамы в порядке sort_order
     with open(f'static/img/{reqdata}/info.txt') as f:
             lis = ''.join(f.readline()).split()
             dirs_dict = {f'p{i[:-1]}': i[-1] for i in lis}
@@ -10,10 +10,3 @@ def genarrows(reqdata):     # возвращается варианты пере
             # print(dirs_dict, new_dict)
 
             return (dirs_dict, res)
-
-
-def getadditionalinfo(reqdata):
-      with open(f'static/img/{reqdata}/info.txt') as f:
-            reader = f.readlines()[1:]
-            
-            return reader

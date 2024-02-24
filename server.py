@@ -5,15 +5,14 @@ from functions import *
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'okok'
 
-
+# запускает приложение
 @app.route('/', methods=['GET', 'POST'])
-def test():
+def main():
     if request.method == 'POST':
         reqdata = request.data.decode('utf-8')
         arrows = genarrows(reqdata)
-        additional_data = getadditionalinfo(reqdata)
 
-        return {'info': arrows[0], 'arroworder': arrows[1], 'signs': additional_data}
+        return {'info': arrows[0], 'arroworder': arrows[1]}
 
     return render_template('web.html')
 

@@ -87,15 +87,16 @@ function setarrows(current) {
 
 	// 4. Этот код сработает после того, как мы получим ответ сервера
 	xhr.onload = function() {
-		var restext = this.responseText
-		let result = JSON.parse(restext)
-		let res = result['arroworder']
+		var restext = this.responseText;
+		console.log(restext);
+		let result = JSON.parse(restext);
+		let res = result['arroworder'];
 		let dir_values = {
 			'l': 0,
 			'f': 1,
 			'r': 2,
 			'b': 3
-		}
+		};
 		
 		let arrows = [...document.getElementsByClassName('arrow')]
 

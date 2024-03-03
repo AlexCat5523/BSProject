@@ -135,6 +135,7 @@ function setarrows(current) {
 			elem.setAttribute('id', `arrow_${res[i]}`)
 			elem.setAttribute('class', 'arrow')
 			elem.setAttribute('src', 'static/media/arrow.png')
+			elem.setAttribute('draggable', 'false')
 			elem.onclick = function() { goto(res[i]) }
 			
 			elem.style.rotate = `${90 * dir_values[dir] + controls.getAzimuthalAngle() * (180 / Math.PI)}deg`	// устанавливаем поворот стрелки

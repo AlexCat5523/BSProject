@@ -19,6 +19,7 @@ body {
     top: 70%;
     left: 40%;
     width: 270px;
+    user-select: none;
     /* outline: 0.1rem solid; */
 }
 
@@ -27,6 +28,7 @@ body {
     height: 50px;
     margin: 20px;
     visibility: hidden;
+    user-select: none;
 }
 
 .arrow:hover {

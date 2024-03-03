@@ -75,7 +75,7 @@ function goto(tile) {
 function setarrows(current) {
 	let xhr = new XMLHttpRequest();
 
-	xhr.open('POST', 'http://127.0.0.1:5000');
+	xhr.open('POST', '/');
 
 	// 3. Отсылаем запрос
 	xhr.send(current);
@@ -87,8 +87,9 @@ function setarrows(current) {
 
 	// 4. Этот код сработает после того, как мы получим ответ сервера
 	xhr.onload = function() {
+		console.log(this)
 		var restext = this.responseText
-		console.log(restext)
+		// console.log(restext)
 		let result = JSON.parse(restext)
 		let res = result['arroworder']
 		let dir_values = {
